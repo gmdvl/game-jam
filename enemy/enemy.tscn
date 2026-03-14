@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dh5f4544n38df" path="res://player/bullet.webp" id="1"]
 [ext_resource type="AudioStream" uid="uid://cwqx3s5fy0q7t" path="res://enemy/explode.wav" id="2"]
 [ext_resource type="AudioStream" uid="uid://v1ehqldgci2l" path="res://enemy/hit.wav" id="3"]
+[ext_resource type="Script" uid="uid://bwxpjo7rri4ac" path="res://enemy/enemy_gun.gd" id="3_1wwld"]
 [ext_resource type="Texture2D" uid="uid://g31nf3mg4rpj" path="res://enemy/enemy.webp" id="4"]
 [ext_resource type="Script" uid="uid://uc4vp46ttpdt" path="res://enemy/enemy.gd" id="5"]
 
@@ -276,6 +277,15 @@ flip_h = true
 hframes = 8
 vframes = 2
 
+[node name="Gun" type="Marker2D" parent="Sprite2D" unique_id=225057596]
+position = Vector2(24, 0)
+script = ExtResource("3_1wwld")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="Sprite2D/Gun" unique_id=1660837979]
+
+[node name="Cooldown" type="Timer" parent="Sprite2D/Gun" unique_id=1542152257]
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1362484596]
 libraries/ = SubResource("AnimationLibrary_0kjfc")
 
@@ -305,3 +315,9 @@ stream = ExtResource("3")
 
 [node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=453738939]
 stream = ExtResource("2")
+
+[node name="DecisionTimer" type="Timer" parent="." unique_id=644258036]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="DecisionTimer" to="." method="_on_decision_timer_timeout"]

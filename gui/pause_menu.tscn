@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://hiv0htsf7jd7" path="res://gui/pause_menu.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cbxfkqpq2rynb" path="res://gui/coins_counter.tscn" id="4"]
 
-[node name="PauseMenu" type="Control" unique_id=1424075319]
+[node name="PauseMenu" type="Control" unique_id=1424075319 groups=["pause_menu"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
