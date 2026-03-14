@@ -9,6 +9,8 @@ const ACCELERATION_SPEED = WALK_SPEED * 6.0
 const JUMP_VELOCITY = -725.0
 ## Maximum speed at which the player can fall.
 const TERMINAL_VELOCITY = 700
+const MAX_HEALTH = 3
+var health: int = MAX_HEALTH
 
 ## The player listens for input actions appended with this suffix.[br]
 ## Used to separate controls for multiple players in splitscreen.
@@ -87,3 +89,19 @@ func try_jump() -> void:
 		return
 	velocity.y = JUMP_VELOCITY
 	jump_sound.play()
+	
+func take_damage(amount: int = 1) -> void:
+	health -= amount
+	print("Player health: ", health)
+
+	if health <= 0:
+		die()
+
+func die() -> void:
+	set_physics_process(false)
+	visible = false
+
+	var pause_menu := get_tree().get_first_node_in_group("pause_menu") as PauseMenu
+	if pause_menu:
+		get_tree().paused = true
+		pause_menu.open_death()

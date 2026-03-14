@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c2d7h0cs2puxh"]
+
+[node name="EnemyBullet" type="RigidBody2D" unique_id=1850889890]
