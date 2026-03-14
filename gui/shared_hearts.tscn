@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://shared_hearts_tscn1"]
+
+[ext_resource type="Script" path="res://gui/shared_hearts.gd" id="1"]
+
+[node name="SharedHearts" type="HBoxContainer"]
+script = ExtResource("1")

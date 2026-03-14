@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://c7smu3q3ymmim"]
+
+[ext_resource type="Script" path="res://enemy/haunter.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bxdgfwo0d0hhs" path="res://enemy/orc_idle.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c6hk1oducuaim" path="res://enemy/orc_walk.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cer3eh8x3vw0b" path="res://enemy/orc_run.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b3bcsaslxf6hp" path="res://enemy/orc_die.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://cwqx3s5fy0q7t" path="res://enemy/explode.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://v1ehqldgci2l" path="res://enemy/hit.wav" id="7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y245y"]
+atlas = ExtResource("5")
+region = Rect2(0, 0, 125, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah14u"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 109, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk0xc"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 114, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esnwj"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 85, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqhiw"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 105, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_haunter"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y245y")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah14u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk0xc")
+}],
+"loop": true,
+"name": &"run",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esnwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqhiw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_haunter"]
+radius = 20.0
+height = 54.0
+
+[node name="Haunter" type="CharacterBody2D" unique_id=596459700]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=78034900]
+position = Vector2(-15, -1)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_haunter")
+animation = &"die"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1682765490]
+position = Vector2(-14, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_haunter")
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="." unique_id=910279960]
+position = Vector2(-18, -4)
+target_position = Vector2(0, 38)
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="." unique_id=782144350]
+position = Vector2(18, -4)
+target_position = Vector2(0, 38)
+collision_mask = 24
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="." unique_id=453738941]
+stream = ExtResource("6")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1791067501]
+stream = ExtResource("7")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
