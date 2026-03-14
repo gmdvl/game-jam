@@ -8,4 +8,13 @@
 layout_mode = 2
 text = "Change to 1-player"
 
+[node name="CoinsCounter" parent="ColorRect" parent_id_path=PackedInt32Array(1798084660) index="1" unique_id=663611775]
+visible = false
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_right = 85.0
+offset_bottom = 0.0
+grow_horizontal = 1
+
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
