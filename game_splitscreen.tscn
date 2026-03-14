@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cygtqanamu68e" path="res://level/level.tscn" id="3_e0nyr"]
 [ext_resource type="PackedScene" uid="uid://dsqy8lxrpip13" path="res://player/player.tscn" id="4_8j0va"]
 [ext_resource type="PackedScene" uid="uid://bbl6yrj1g5jgi" path="res://level/background/parallax_background.tscn" id="5_47vt4"]
+[ext_resource type="PackedScene" uid="uid://cbxfkqpq2rynb" path="res://gui/coins_counter.tscn" id="6_slr7r"]
 
 [sub_resource type="Gradient" id="Gradient_77njx"]
 
@@ -89,5 +90,7 @@ layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" unique_id=2027766477 instance=ExtResource("2_xkexm")]
 
-[connection signal="coin_collected" from="Black/SplitContainer/ViewportContainer1/Viewport1/Player1" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
-[connection signal="coin_collected" from="Black/SplitContainer/ViewportContainer1/Viewport1/Player2" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
+[node name="CoinsCounter" parent="InterfaceLayer" unique_id=1407430856 instance=ExtResource("6_slr7r")]
+
+[connection signal="letter_collected" from="Black/SplitContainer/ViewportContainer1/Viewport1/Player1" to="InterfaceLayer/CoinsCounter" method="_on_player_1_letter_collected"]
+[connection signal="letter_collected" from="Black/SplitContainer/ViewportContainer1/Viewport1/Player2" to="InterfaceLayer/CoinsCounter" method="_on_player_2_letter_collected"]

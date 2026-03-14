@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cygtqanamu68e" path="res://level/level.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dsqy8lxrpip13" path="res://player/player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://nhpj5cy87771" path="res://gui/pause_menu_singleplayer.tscn" id="4_x6l06"]
+[ext_resource type="PackedScene" uid="uid://cbxfkqpq2rynb" path="res://gui/coins_counter.tscn" id="5_2olji"]
 
 [node name="Game" type="Node" unique_id=924924404]
 process_mode = 3
@@ -21,4 +22,10 @@ layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" unique_id=1388998718 instance=ExtResource("4_x6l06")]
 
-[connection signal="coin_collected" from="Level/Player" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
+[node name="CoinsCounter" parent="InterfaceLayer" unique_id=1407430856 instance=ExtResource("5_2olji")]
+offset_left = 25.0
+offset_top = 45.0
+offset_right = 25.0
+offset_bottom = 45.0
+
+[connection signal="letter_collected" from="Level/Player" to="InterfaceLayer/CoinsCounter" method="_on_player_letter_collected"]

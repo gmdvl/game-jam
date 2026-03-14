@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @warning_ignore("unused_signal")
-signal coin_collected()
+signal letter_collected(letter: String)
 
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
@@ -25,6 +25,8 @@ var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity")
 @onready var gun: Gun = sprite.get_node(^"Gun")
 @onready var camera := $Camera as Camera2D
 var _double_jump_charged: bool = false
+var collected_letters: Array[String] = []
+
 
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +79,10 @@ func get_new_animation(is_shooting: bool = false) -> String:
 		animation_new += "_weapon"
 	return animation_new
 
+func collect_letter(letter: String) -> void:
+	collected_letters.append(letter)
+	letter_collected.emit(letter)
+
 
 func try_jump() -> void:
 	if is_on_floor():
@@ -105,3 +111,12 @@ func die() -> void:
 	if pause_menu:
 		get_tree().paused = true
 		pause_menu.open_death()
+		
+
+
+#func _on_player_letter_collected(letter: String) -> void:
+	#collect_letter(letter)
+#
+#
+#func _on_letter_collected(letter: String) -> void:
+	#pass # Replace with function body.
