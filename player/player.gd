@@ -2,18 +2,18 @@ class_name Player
 extends CharacterBody2D
 
 @warning_ignore("unused_signal")
-signal letter_collected(letter: String)
+signal coin_collected()
+signal health_changed(new_health: int)
+signal died()
 
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
 const JUMP_VELOCITY = -725.0
-## Maximum speed at which the player can fall.
 const TERMINAL_VELOCITY = 700
-const MAX_HEALTH = 3
+const MAX_HEALTH = 5
 var health: int = MAX_HEALTH
+var _invincible: bool = false
 
-## The player listens for input actions appended with this suffix.[br]
-## Used to separate controls for multiple players in splitscreen.
 @export var action_suffix: String = ""
 
 var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity")
@@ -25,8 +25,6 @@ var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity")
 @onready var gun: Gun = sprite.get_node(^"Gun")
 @onready var camera := $Camera as Camera2D
 var _double_jump_charged: bool = false
-var collected_letters: Array[String] = []
-
 
 
 func _physics_process(delta: float) -> void:
@@ -35,9 +33,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump" + action_suffix):
 		try_jump()
 	elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
-		# The player let go of jump early, reduce vertical momentum.
 		velocity.y *= 0.6
-	# Fall.
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
 	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
@@ -79,10 +75,6 @@ func get_new_animation(is_shooting: bool = false) -> String:
 		animation_new += "_weapon"
 	return animation_new
 
-func collect_letter(letter: String) -> void:
-	collected_letters.append(letter)
-	letter_collected.emit(letter)
-
 
 func try_jump() -> void:
 	if is_on_floor():
@@ -95,28 +87,30 @@ func try_jump() -> void:
 		return
 	velocity.y = JUMP_VELOCITY
 	jump_sound.play()
-	
-func take_damage(amount: int = 1) -> void:
-	health -= amount
-	print("Player health: ", health)
 
+
+func take_damage(amount: int = 1) -> void:
+	if _invincible:
+		return
+	health -= amount
+	emit_signal("health_changed", health)
 	if health <= 0:
+		emit_signal("died")
 		die()
+		return
+	# Flash invincibility
+	_invincible = true
+	var tween := create_tween()
+	for i in 6:
+		tween.tween_property(sprite, ^"modulate:a", 0.2, 0.08)
+		tween.tween_property(sprite, ^"modulate:a", 1.0, 0.08)
+	tween.tween_callback(func() -> void: _invincible = false)
+
 
 func die() -> void:
 	set_physics_process(false)
 	visible = false
-
 	var pause_menu := get_tree().get_first_node_in_group("pause_menu") as PauseMenu
 	if pause_menu:
 		get_tree().paused = true
 		pause_menu.open_death()
-		
-
-
-#func _on_player_letter_collected(letter: String) -> void:
-	#collect_letter(letter)
-#
-#
-#func _on_letter_collected(letter: String) -> void:
-	#pass # Replace with function body.

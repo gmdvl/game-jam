@@ -8,8 +8,4 @@
 layout_mode = 2
 text = "Change to 2-Player"
 
-[node name="CoinsCounter" parent="ColorRect" parent_id_path=PackedInt32Array(1798084660) index="1" unique_id=663611775]
-offset_right = 23.0
-offset_bottom = 0.0
-
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/SplitscreenButton" to="." method="_on_splitscreen_button_pressed"]

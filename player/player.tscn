@@ -267,5 +267,3 @@ position = Vector2(1870, 564)
 scale = Vector2(2, 2)
 action = "shoot"
 visibility_mode = 1
-
-[connection signal="letter_collected" from="." to="." method="_on_letter_collected"]
