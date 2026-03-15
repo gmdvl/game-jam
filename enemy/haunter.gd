@@ -55,6 +55,7 @@ func _tick_hunt() -> void:
 		if col.get_collider() is Player:
 			_state = State.PAUSED
 			_pause_timer = 3.0
+			_player.take_damage(1)
 			return
 	_face_velocity()
 	_play(&"run")
