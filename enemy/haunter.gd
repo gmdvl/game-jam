@@ -1,7 +1,7 @@
 class_name Haunter
 extends CharacterBody2D
 
-enum State { PATROL, HUNT, DEAD }
+enum State { PATROL, HUNT, PAUSED, DEAD }
 
 const PATROL_SPEED: float  = 60.0
 const CHASE_SPEED: float   = 180.0
@@ -10,6 +10,7 @@ const SIGHT_FOV_DEG: float = 70.0
 
 var _state: State = State.PATROL
 var _player: Player = null
+var _pause_timer: float = 0.0
 
 @onready var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity") as int
 @onready var floor_left: RayCast2D   = $FloorDetectorLeft
@@ -45,13 +46,23 @@ func _tick_patrol(delta: float) -> void:
 
 
 func _tick_hunt() -> void:
+	if _state == State.PAUSED:
+		velocity = Vector2.ZERO
+		_play(&"idle")
+		_pause_timer -= get_physics_process_delta_time()
+		if _pause_timer <= 0.0:
+			_state = State.HUNT
+		return
+	
 	var dir: Vector2 = (_player.global_position - global_position).normalized()
 	velocity = dir * CHASE_SPEED
 	move_and_slide()
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
 		if col.get_collider() is Player:
-			(col.get_collider() as Player).take_damage()
+			_state = State.PAUSED
+			_pause_timer = 3.0
+			return
 	_face_velocity()
 	_play(&"run")
 
