@@ -28,3 +28,10 @@ func _on_player_died() -> void:
 		return
 	_game_over = true
 	_game_over_screen.show_game_over()
+
+func _on_player_1_letter_collected(letter: String) -> void:
+	pass # Replace with function body.
+
+
+func _on_player_2_letter_collected(letter: String) -> void:
+	pass # Replace with function body.

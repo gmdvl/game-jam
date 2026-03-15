@@ -89,6 +89,9 @@ func open_death() -> void:
 			fade_out_duration
 		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
+func _on_letter_collected(letter: String) -> void:
+	coins_counter.collect_letter(letter)
+
 func _on_coin_collected() -> void:
 	coins_counter.collect_coin()
 

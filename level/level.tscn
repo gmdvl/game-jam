@@ -23,6 +23,54 @@
 [ext_resource type="Texture2D" uid="uid://juv5i2dnrlbl" path="res://level/props/vine_1.webp" id="21"]
 [ext_resource type="Texture2D" uid="uid://bhqeay3mivam5" path="res://level/props/vine_2.webp" id="22"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tv7ir"]
+load_path = "res://.godot/imported/letter_g.png-a2668268f8ccce95f14b778fe12b7707.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kp5pi"]
+load_path = "res://.godot/imported/letter_g.png-a2668268f8ccce95f14b778fe12b7707.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b7y0n"]
+load_path = "res://.godot/imported/letter_i.png-5164ac97bf6f301be4d78daf2c814b12.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v4yay"]
+load_path = "res://.godot/imported/letter_i.png-5164ac97bf6f301be4d78daf2c814b12.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xl7j7"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0wo3"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdsbj"]
+load_path = "res://.godot/imported/letter_n.png-3342dcee2f6ca0e45e8080ac846ce8ef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ml0fe"]
+load_path = "res://.godot/imported/letter_n.png-3342dcee2f6ca0e45e8080ac846ce8ef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h74y2"]
+load_path = "res://.godot/imported/letter_t.png-b1f40f099aba7446ab3540ec24779f0f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7cdnq"]
+load_path = "res://.godot/imported/letter_t.png-b1f40f099aba7446ab3540ec24779f0f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lsj08"]
+load_path = "res://.godot/imported/letter_j.png-d4c4c656096a16af7ca7f2293c70bf2d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u5n7q"]
+load_path = "res://.godot/imported/letter_j.png-d4c4c656096a16af7ca7f2293c70bf2d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qslh7"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdj2k"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s1aav"]
+load_path = "res://.godot/imported/letter_m.png-3d855fe970080f9bc07cf679947f0949.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xdahv"]
+load_path = "res://.godot/imported/letter_m.png-3d855fe970080f9bc07cf679947f0949.ctex"
+
 [sub_resource type="Animation" id="1"]
 resource_name = "move"
 length = 4.0

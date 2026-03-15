@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @warning_ignore("unused_signal")
 signal coin_collected()
+signal letter_collected(letter: String)
 signal health_changed(new_health: int)
 signal died()
 
@@ -28,7 +29,7 @@ var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity")
 var _double_jump_charged: bool = false
 var _spawn_position: Vector2 = Vector2.ZERO
 const FALL_KILL_MARGIN: float = 200.0  # px below camera bottom before respawn
-
+var collected_letters: Array[String] = []
 
 func _ready() -> void:
 	add_to_group("players")
@@ -85,6 +86,9 @@ func get_new_animation(is_shooting: bool = false) -> String:
 		animation_new += "_weapon"
 	return animation_new
 
+func collect_letter(letter: String) -> void:
+	collected_letters.append(letter)
+	letter_collected.emit(letter)
 
 func respawn() -> void:
 	position   = _spawn_position
@@ -136,3 +140,10 @@ func die() -> void:
 	if pause_menu:
 		get_tree().paused = true
 		pause_menu.open_death()
+
+#func _on_player_letter_collected(letter: String) -> void:
+	#collect_letter(letter)
+#
+#
+#func _on_letter_collected(letter: String) -> void:
+	#pass # Replace with function body.
