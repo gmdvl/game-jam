@@ -15,3 +15,4 @@ res://level/level.tscn
 res://player/bullet.gd
 res://player/player.tscn
 res://enemy/haunter.tscn
+res://enemy/haunter.gd

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cbxfkqpq2rynb"]
 
 [ext_resource type="Theme" uid="uid://bc4kpaija14nv" path="res://gui/theme.tres" id="1_mctnl"]
-; [ext_resource type="Texture2D" uid="uid://gwsn8ufh1n7i" path="res://level/coin.webp" id="2"]
 [ext_resource type="Script" uid="uid://d3y5krwthkfry" path="res://gui/coins_counter.gd" id="3"]
 
 [node name="CoinsCounter" type="Panel" unique_id=1407430856]
@@ -31,11 +30,5 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
-; text = "99"
 horizontal_alignment = 2
 vertical_alignment = 1
-
-; [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1948616029]
-; position = Vector2(23.5, 24.5)
-; sprite_frames = SubResource("6")
-; animation = &"coin_spinning"
