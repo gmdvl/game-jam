@@ -1,0 +1,17 @@
+res://game.gd
+res://game_splitscreen.gd
+res://enemy/enemy.gd
+res://gui/coins_counter.gd
+res://gui/coins_counter.tscn
+res://gui/pause_menu.gd
+res://gui/pause_menu.tscn
+res://level/coin.gd
+res://level/coin.tscn
+res://level/level.gd
+res://player/player.gd
+res://enemy/enemy.tscn
+res://gui/pause_menu_splitscreen.tscn
+res://level/level.tscn
+res://player/bullet.gd
+res://player/player.tscn
+res://enemy/haunter.tscn
