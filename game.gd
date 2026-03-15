@@ -5,6 +5,10 @@ extends Node
 @onready var _pause_menu := $InterfaceLayer/PauseMenu as PauseMenu
 
 
+func _ready() -> void:
+	GameState.mode = GameState.Mode.SINGLE
+
+
 func _unhandled_input(input_event: InputEvent) -> void:
 	if input_event.is_action_pressed(&"toggle_fullscreen"):
 		var mode := DisplayServer.window_get_mode()

@@ -1,0 +1,7 @@
+# MarioGAN Server dependencies
+# Required
+flask>=2.3.0
+numpy>=1.24.0
+
+# Optional — enables the DCGAN model (falls back to procedural without it)
+# torch>=2.0.0

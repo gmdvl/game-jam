@@ -1,0 +1,19 @@
+name: game-jam
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Runtime
+  - python=3.12
+  - flask>=3.0
+  - numpy>=1.26
+
+  # Optional: neural GAN mode (uncomment to enable DCGAN generator)
+  # - pytorch>=2.3
+  # - cpuonly  # swap for pytorch-cuda=12.1 if using GPU
+
+  # Dev tools
+  - pip
+  # - pip:
+      # pip-only packages
+      # - gdtoolkit  # GDScript linter/formatter

@@ -8,7 +8,8 @@ signal died()
 
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
-const JUMP_VELOCITY = -725.0
+const JUMP_VELOCITY = -800.0
+## Maximum speed at which the player can fall.
 const TERMINAL_VELOCITY = 700
 const MAX_HEALTH = 5
 var health: int = MAX_HEALTH
@@ -25,9 +26,18 @@ var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity")
 @onready var gun: Gun = sprite.get_node(^"Gun")
 @onready var camera := $Camera as Camera2D
 var _double_jump_charged: bool = false
+var _spawn_position: Vector2 = Vector2.ZERO
+const FALL_KILL_MARGIN: float = 200.0  # px below camera bottom before respawn
+
+
+func _ready() -> void:
+	add_to_group("players")
+	# Record spawn position once the node is placed in the scene
+	_spawn_position = position
 
 
 func _physics_process(delta: float) -> void:
+	_check_fall_respawn()
 	if is_on_floor():
 		_double_jump_charged = true
 	if Input.is_action_just_pressed("jump" + action_suffix):
@@ -74,6 +84,18 @@ func get_new_animation(is_shooting: bool = false) -> String:
 	if is_shooting:
 		animation_new += "_weapon"
 	return animation_new
+
+
+func respawn() -> void:
+	position   = _spawn_position
+	velocity   = Vector2.ZERO
+	_double_jump_charged = false
+
+
+func _check_fall_respawn() -> void:
+	var kill_y: float = camera.limit_bottom + FALL_KILL_MARGIN
+	if position.y > kill_y:
+		respawn()
 
 
 func try_jump() -> void:

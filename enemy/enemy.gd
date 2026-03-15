@@ -9,6 +9,7 @@ enum State {
 
 const WALK_SPEED = 22.0
 const SHOOT_RANGE = 260.0
+signal enemy_died
 
 var _state := State.WALKING
 var _direction := 1
@@ -28,6 +29,7 @@ var _direction := 1
 func _ready() -> void:
 	randomize()
 	_choose_next_action()
+	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
 	if _state == State.DEAD:
@@ -132,6 +134,8 @@ func destroy() -> void:
 
 	_state = State.DEAD
 	velocity = Vector2.ZERO
+	enemy_died.emit()
+	queue_free()
 	decision_timer.stop()
 
 	if hit_sound:

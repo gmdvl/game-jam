@@ -101,13 +101,16 @@ func _on_resume_button_pressed() -> void:
 
 func _on_singleplayer_button_pressed() -> void:
 	if visible:
-		get_tree().paused = false
-		get_tree().change_scene_to_file("res://game_singleplayer.tscn")
+		GameState.switch_mode(GameState.Mode.SINGLE)
 
 func _on_splitscreen_button_pressed() -> void:
 	if visible:
-		get_tree().paused = false
-		get_tree().change_scene_to_file("res://game_splitscreen.tscn")
+		GameState.switch_mode(GameState.Mode.SPLIT)
+
+
+func _on_new_map_button_pressed() -> void:
+	if visible:
+		GameState.regenerate_level()
 
 func _on_quit_button_pressed() -> void:
 	if visible:

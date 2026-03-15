@@ -49,6 +49,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Resume"
 
+[node name="NewMapButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1234567890]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New Map"
+
 [node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2134735849]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -62,4 +67,5 @@ offset_right = 105.0
 offset_bottom = 50.0
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/NewMapButton" to="." method="_on_new_map_button_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

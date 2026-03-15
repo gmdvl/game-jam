@@ -8,6 +8,7 @@ var _game_over: bool = false
 
 
 func _ready() -> void:
+	GameState.mode = GameState.Mode.SPLIT
 	var player_1 := %Player1 as Player
 	var player_2 := %Player2 as Player
 	var viewport_1 := %Viewport1 as SubViewport

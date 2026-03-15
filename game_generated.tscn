@@ -1,0 +1,23 @@
+[gd_scene format=4 uid="uid://cgamegen01"]
+
+[ext_resource type="Script"      uid="uid://dwvlcsxdrm03l" path="res://game.gd"                              id="1"]
+[ext_resource type="PackedScene" uid="uid://cmariolevel01" path="res://level/generated_level.tscn"           id="2"]
+[ext_resource type="PackedScene" uid="uid://nhpj5cy87771"  path="res://gui/pause_menu_singleplayer.tscn"     id="3"]
+[ext_resource type="PackedScene" uid="uid://dsqy8lxrpip13"  path="res://player/player.tscn"                        id="7"]
+
+[node name="Game" type="Node"]
+process_mode = 3
+script = ExtResource("1")
+
+[node name="Level" parent="." instance=ExtResource("2")]
+
+[node name="Player" parent="Level" instance=ExtResource("7")]
+z_index = 3
+position = Vector2(96, 700)
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource("3")]
+
+[connection signal="coin_collected" from="Level/Player" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
