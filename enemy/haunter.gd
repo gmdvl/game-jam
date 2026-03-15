@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	match _state:
 		State.PATROL: _tick_patrol(delta)
 		State.HUNT:   _tick_hunt()
+		State.PAUSED: _tick_paused(delta)
 		State.DEAD:   pass
 
 
@@ -46,14 +47,6 @@ func _tick_patrol(delta: float) -> void:
 
 
 func _tick_hunt() -> void:
-	if _state == State.PAUSED:
-		velocity = Vector2.ZERO
-		_play(&"idle")
-		_pause_timer -= get_physics_process_delta_time()
-		if _pause_timer <= 0.0:
-			_state = State.HUNT
-		return
-	
 	var dir: Vector2 = (_player.global_position - global_position).normalized()
 	velocity = dir * CHASE_SPEED
 	move_and_slide()
@@ -65,6 +58,14 @@ func _tick_hunt() -> void:
 			return
 	_face_velocity()
 	_play(&"run")
+
+
+func _tick_paused(delta: float) -> void:
+	velocity = Vector2.ZERO
+	_play(&"idle")
+	_pause_timer -= delta
+	if _pause_timer <= 0.0:
+		_state = State.HUNT
 
 
 func destroy() -> void:
