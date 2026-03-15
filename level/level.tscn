@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dfg1bqmq1k47c" path="res://level/coin.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://c684ydh6l18bp" path="res://level/platforms/moving_platform.webp" id="6"]
 [ext_resource type="PackedScene" uid="uid://bbl6yrj1g5jgi" path="res://level/background/parallax_background.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://haunter_tscn_uid1" path="res://enemy/haunter.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://cot0528c0dfd8" path="res://level/props/grass_1.webp" id="10"]
 [ext_resource type="Texture2D" uid="uid://dxh02q4va7bck" path="res://level/props/flower_1.webp" id="11"]
 [ext_resource type="Texture2D" uid="uid://hbjsqp1vx2l0" path="res://level/props/grass_2.webp" id="12"]
@@ -20,6 +19,55 @@
 [ext_resource type="Texture2D" uid="uid://dejfdvlpnwr3q" path="res://level/props/ground_flowers_1.webp" id="20"]
 [ext_resource type="Texture2D" uid="uid://juv5i2dnrlbl" path="res://level/props/vine_1.webp" id="21"]
 [ext_resource type="Texture2D" uid="uid://bhqeay3mivam5" path="res://level/props/vine_2.webp" id="22"]
+[ext_resource type="PackedScene" uid="uid://haunter_tscn_uid1" path="res://enemy/haunter.tscn" id="8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tv7ir"]
+load_path = "res://.godot/imported/letter_g.png-a2668268f8ccce95f14b778fe12b7707.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kp5pi"]
+load_path = "res://.godot/imported/letter_g.png-a2668268f8ccce95f14b778fe12b7707.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b7y0n"]
+load_path = "res://.godot/imported/letter_i.png-5164ac97bf6f301be4d78daf2c814b12.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v4yay"]
+load_path = "res://.godot/imported/letter_i.png-5164ac97bf6f301be4d78daf2c814b12.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xl7j7"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0wo3"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdsbj"]
+load_path = "res://.godot/imported/letter_n.png-3342dcee2f6ca0e45e8080ac846ce8ef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ml0fe"]
+load_path = "res://.godot/imported/letter_n.png-3342dcee2f6ca0e45e8080ac846ce8ef.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h74y2"]
+load_path = "res://.godot/imported/letter_t.png-b1f40f099aba7446ab3540ec24779f0f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7cdnq"]
+load_path = "res://.godot/imported/letter_t.png-b1f40f099aba7446ab3540ec24779f0f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lsj08"]
+load_path = "res://.godot/imported/letter_j.png-d4c4c656096a16af7ca7f2293c70bf2d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u5n7q"]
+load_path = "res://.godot/imported/letter_j.png-d4c4c656096a16af7ca7f2293c70bf2d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qslh7"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdj2k"]
+load_path = "res://.godot/imported/letter_a.png-061133ba7ddb63fdb2ba80a17b023076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s1aav"]
+load_path = "res://.godot/imported/letter_m.png-3d855fe970080f9bc07cf679947f0949.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xdahv"]
+load_path = "res://.godot/imported/letter_m.png-3d855fe970080f9bc07cf679947f0949.ctex"
 
 [sub_resource type="Animation" id="1"]
 resource_name = "move"
@@ -1209,82 +1257,76 @@ texture = ExtResource("11")
 
 [node name="Coins" type="Node" parent="." unique_id=1657800085]
 
-[node name="CoinsHorizontal1" type="Node2D" parent="Coins" unique_id=1831044754]
-position = Vector2(700, 610)
+[node name="Coin" parent="Coins" unique_id=143622931 instance=ExtResource("4")]
+position = Vector2(773, 354)
+letter_texture = SubResource("CompressedTexture2D_tv7ir")
 
-[node name="Coin" parent="Coins/CoinsHorizontal1" unique_id=800041734 instance=ExtResource("4")]
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin" unique_id=1337785500]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_kp5pi")
 
-[node name="Coin2" parent="Coins/CoinsHorizontal1" unique_id=118845354 instance=ExtResource("4")]
-position = Vector2(30, 0)
+[node name="Coin2" parent="Coins" unique_id=1118678119 instance=ExtResource("4")]
+position = Vector2(376, 608)
+letter = "I"
+letter_texture = SubResource("CompressedTexture2D_b7y0n")
 
-[node name="Coin3" parent="Coins/CoinsHorizontal1" unique_id=648774255 instance=ExtResource("4")]
-position = Vector2(60, 0)
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin2" unique_id=1014963448]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_v4yay")
 
-[node name="CoinsHorizontal3" type="Node2D" parent="Coins" unique_id=163293025]
-position = Vector2(154, 43)
+[node name="Coin3" parent="Coins" unique_id=552219864 instance=ExtResource("4")]
+position = Vector2(436, 356)
+letter = "A"
+letter_texture = SubResource("CompressedTexture2D_xl7j7")
 
-[node name="Coin" parent="Coins/CoinsHorizontal3" unique_id=835654187 instance=ExtResource("4")]
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin3" unique_id=1004133503]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_o0wo3")
 
-[node name="Coin2" parent="Coins/CoinsHorizontal3" unique_id=733462874 instance=ExtResource("4")]
-position = Vector2(30, 0)
+[node name="Coin4" parent="Coins" unique_id=1236532860 instance=ExtResource("4")]
+position = Vector2(600, 80)
+letter = "N"
+letter_texture = SubResource("CompressedTexture2D_kdsbj")
 
-[node name="Coin3" parent="Coins/CoinsHorizontal3" unique_id=1760360106 instance=ExtResource("4")]
-position = Vector2(60, 0)
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin4" unique_id=1828568955]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_ml0fe")
 
-[node name="CoinsHorizontal2" type="Node2D" parent="Coins" unique_id=724755560]
-position = Vector2(200, 610)
+[node name="Coin5" parent="Coins" unique_id=283171589 instance=ExtResource("4")]
+position = Vector2(445, 172)
+letter = "T"
+letter_texture = SubResource("CompressedTexture2D_h74y2")
 
-[node name="Coin" parent="Coins/CoinsHorizontal2" unique_id=2055643400 instance=ExtResource("4")]
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin5" unique_id=1500893558]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_7cdnq")
 
-[node name="Coin2" parent="Coins/CoinsHorizontal2" unique_id=2055670279 instance=ExtResource("4")]
-position = Vector2(30, 0)
+[node name="Coin6" parent="Coins" unique_id=274189720 instance=ExtResource("4")]
+position = Vector2(-162, 235)
+letter = "J"
+letter_texture = SubResource("CompressedTexture2D_lsj08")
 
-[node name="Coin3" parent="Coins/CoinsHorizontal2" unique_id=1940277600 instance=ExtResource("4")]
-position = Vector2(60, 0)
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin6" unique_id=1836032326]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_u5n7q")
 
-[node name="CoinsArc1" type="Node2D" parent="Coins" unique_id=455900908]
-position = Vector2(307, 594)
+[node name="Coin7" parent="Coins" unique_id=2036193498 instance=ExtResource("4")]
+position = Vector2(115, 305)
+letter = "A"
+letter_texture = SubResource("CompressedTexture2D_qslh7")
 
-[node name="Coin" parent="Coins/CoinsArc1" unique_id=40726656 instance=ExtResource("4")]
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin7" unique_id=1176217534]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_kdj2k")
 
-[node name="Coin2" parent="Coins/CoinsArc1" unique_id=1774555216 instance=ExtResource("4")]
-position = Vector2(30, -10)
+[node name="Coin8" parent="Coins" unique_id=816025805 instance=ExtResource("4")]
+position = Vector2(180, 40)
+letter = "M"
+letter_texture = SubResource("CompressedTexture2D_s1aav")
 
-[node name="Coin3" parent="Coins/CoinsArc1" unique_id=449695508 instance=ExtResource("4")]
-position = Vector2(60, 0)
-
-[node name="CoinsArc2" type="Node2D" parent="Coins" unique_id=1984733654]
-position = Vector2(453, 332)
-
-[node name="Coin" parent="Coins/CoinsArc2" unique_id=450368845 instance=ExtResource("4")]
-
-[node name="Coin2" parent="Coins/CoinsArc2" unique_id=412300776 instance=ExtResource("4")]
-position = Vector2(30, -10)
-
-[node name="Coin3" parent="Coins/CoinsArc2" unique_id=1148923593 instance=ExtResource("4")]
-position = Vector2(60, 0)
-
-[node name="CoinsArc4" type="Node2D" parent="Coins" unique_id=1412036031]
-position = Vector2(122, 406)
-
-[node name="Coin" parent="Coins/CoinsArc4" unique_id=53559994 instance=ExtResource("4")]
-
-[node name="Coin2" parent="Coins/CoinsArc4" unique_id=2070768338 instance=ExtResource("4")]
-position = Vector2(30, -10)
-
-[node name="Coin3" parent="Coins/CoinsArc4" unique_id=1691536943 instance=ExtResource("4")]
-position = Vector2(60, 0)
-
-[node name="CoinsArc3" type="Node2D" parent="Coins" unique_id=719296825]
-position = Vector2(594, 332)
-
-[node name="Coin" parent="Coins/CoinsArc3" unique_id=1367083975 instance=ExtResource("4")]
-
-[node name="Coin2" parent="Coins/CoinsArc3" unique_id=609059759 instance=ExtResource("4")]
-position = Vector2(30, -10)
-
-[node name="Coin3" parent="Coins/CoinsArc3" unique_id=546810613 instance=ExtResource("4")]
-position = Vector2(60, 0)
+[node name="Sprite2D2" type="Sprite2D" parent="Coins/Coin8" unique_id=1590607233]
+scale = Vector2(0.12, 0.12)
+texture = SubResource("CompressedTexture2D_xdahv")
 
 [node name="Platforms" type="Node" parent="." unique_id=561757885]
 
@@ -1337,10 +1379,6 @@ position = Vector2(492, 610)
 [node name="Enemy4" parent="Enemies" unique_id=2135398607 instance=ExtResource("2")]
 z_index = 2
 position = Vector2(395, 53)
-
-[node name="Haunter" parent="Enemies" unique_id=2135398620 instance=ExtResource("8")]
-z_index = 3
-position = Vector2(300, 300)
 
 [node name="ParallaxBackground" parent="." unique_id=1950798943 instance=ExtResource("7")]
 
@@ -1725,3 +1763,7 @@ z_index = -2
 position = Vector2(72, 639)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("17")
+
+[node name="Haunter" parent="Enemies" unique_id=2135398620 instance=ExtResource("8")]
+z_index = 3
+position = Vector2(300, 300)

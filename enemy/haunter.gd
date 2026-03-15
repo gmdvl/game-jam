@@ -1,7 +1,7 @@
 class_name Haunter
 extends CharacterBody2D
 
-enum State { PATROL, HUNT, DEAD }
+enum State { PATROL, HUNT, PAUSED, DEAD }
 
 const PATROL_SPEED: float  = 60.0
 const CHASE_SPEED: float   = 180.0
@@ -10,8 +10,7 @@ const SIGHT_FOV_DEG: float = 70.0
 
 var _state: State = State.PATROL
 var _player: Player = null
-var _camera: Camera2D = null
-var _saved_limits: Dictionary = {}
+var _pause_timer: float = 0.0
 
 @onready var gravity: int = ProjectSettings.get(&"physics/2d/default_gravity") as int
 @onready var floor_left: RayCast2D   = $FloorDetectorLeft
@@ -21,15 +20,6 @@ var _saved_limits: Dictionary = {}
 
 func _ready() -> void:
 	_player = _find_player(get_tree().root)
-	if _player:
-		_camera = _player.get_node_or_null(^"Camera") as Camera2D
-		if _camera:
-			_saved_limits = {
-				"left":   _camera.limit_left,
-				"top":    _camera.limit_top,
-				"right":  _camera.limit_right,
-				"bottom": _camera.limit_bottom,
-			}
 	velocity.x = PATROL_SPEED
 
 
@@ -37,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	match _state:
 		State.PATROL: _tick_patrol(delta)
 		State.HUNT:   _tick_hunt()
+		State.PAUSED: _tick_paused(delta)
 		State.DEAD:   pass
 
 
@@ -53,7 +44,6 @@ func _tick_patrol(delta: float) -> void:
 	_play(&"walk")
 	if _player and _can_see_player():
 		_state = State.HUNT
-		_lock_camera()
 
 
 func _tick_hunt() -> void:
@@ -63,10 +53,20 @@ func _tick_hunt() -> void:
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
 		if col.get_collider() is Player:
-			(col.get_collider() as Player).take_damage()
+			_state = State.PAUSED
+			_pause_timer = 3.0
+			_player.take_damage(1)
+			return
 	_face_velocity()
 	_play(&"run")
-	_lock_camera()
+
+
+func _tick_paused(delta: float) -> void:
+	velocity = Vector2.ZERO
+	_play(&"idle")
+	_pause_timer -= delta
+	if _pause_timer <= 0.0:
+		_state = State.HUNT
 
 
 func destroy() -> void:
@@ -74,7 +74,6 @@ func destroy() -> void:
 		return
 	_state = State.DEAD
 	velocity = Vector2.ZERO
-	_restore_camera()
 	anim.play(&"die")
 
 
@@ -98,26 +97,6 @@ func _play(anim_name: StringName) -> void:
 	if anim.animation != anim_name:
 		anim.play(anim_name)
 
-
-func _lock_camera() -> void:
-	if _camera == null or _player == null:
-		return
-	var vp: Vector2 = get_viewport().get_visible_rect().size
-	var px: int = int(_player.global_position.x)
-	var py: int = int(_player.global_position.y)
-	_camera.limit_left   = px - int(vp.x * 0.5)
-	_camera.limit_top    = py - int(vp.y * 0.5)
-	_camera.limit_right  = px + int(vp.x * 0.5)
-	_camera.limit_bottom = py + int(vp.y * 0.5)
-
-
-func _restore_camera() -> void:
-	if _camera == null or _saved_limits.is_empty():
-		return
-	_camera.limit_left   = _saved_limits["left"]
-	_camera.limit_top    = _saved_limits["top"]
-	_camera.limit_right  = _saved_limits["right"]
-	_camera.limit_bottom = _saved_limits["bottom"]
 
 
 func _on_animation_finished() -> void:

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nhpj5cy87771" path="res://gui/pause_menu_singleplayer.tscn" id="4_x6l06"]
 [ext_resource type="PackedScene" uid="uid://hearts_tscn_1" path="res://gui/hearts.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://game_over_tscn_1" path="res://gui/game_over.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cbxfkqpq2rynb" path="res://gui/coins_counter.tscn" id="5_2olji"]
 
 [node name="Game" type="Node" unique_id=924924404]
 process_mode = 3
@@ -29,7 +30,13 @@ offset_top = 10.0
 
 
 [node name="GameOver" parent="InterfaceLayer" unique_id=1388998721 instance=ExtResource("6")]
+[node name="CoinsCounter" parent="InterfaceLayer" unique_id=1407430856 instance=ExtResource("5_2olji")]
+offset_left = 25.0
+offset_top = 45.0
+offset_right = 25.0
+offset_bottom = 45.0
 
-[connection signal="coin_collected" from="Level/Player" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
+[connection signal="letter_collected" from="Level/Player" to="InterfaceLayer/CoinsCounter" method="_on_player_letter_collected"]
+; [connection signal="coin_collected" from="Level/Player" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
 [connection signal="health_changed" from="Level/Player" to="InterfaceLayer/HeartsLeft" method="set_health"]
 [connection signal="died" from="Level/Player" to="InterfaceLayer/GameOver" method="show_game_over"]

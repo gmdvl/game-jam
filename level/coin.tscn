@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfg1bqmq1k47c"]
 
-[ext_resource type="Texture2D" uid="uid://gwsn8ufh1n7i" path="res://level/coin.webp" id="1"]
+; [ext_resource type="Texture2D" uid="uid://gwsn8ufh1n7i" path="res://level/coin.webp" id="1"]
 [ext_resource type="AudioStream" uid="uid://df5qjknnq7dqx" path="res://player/coin_pickup.wav" id="3"]
 [ext_resource type="Script" uid="uid://bvwo136kojllt" path="res://level/coin.gd" id="4"]
 
@@ -170,8 +170,8 @@ monitorable = false
 script = ExtResource("4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=842016281]
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("1")
+scale = Vector2(0.05, 0.05)
+; texture = ExtResource("1")
 hframes = 8
 vframes = 2
 

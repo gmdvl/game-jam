@@ -1,16 +1,40 @@
 class_name CoinsCounter
 extends Panel
 
-var _coins_collected: int = 0
+const TARGET_WORD := "GIANT JAM"
 
-@onready var _coins_label := $Label as Label
+@onready var label := $Label as Label
 
+var collected_letters: Array[String] = []
 
 func _ready() -> void:
-	_coins_label.set_text(str(_coins_collected))
-	($AnimatedSprite2D as AnimatedSprite2D).play()
+	update_display()
+
+func collect_letter(letter: String) -> void:
+	collected_letters.append(letter)
+	update_display()
+
+func update_display() -> void:
+	var remaining := collected_letters.duplicate()
+	var display := ""
+
+	for char in TARGET_WORD:
+		if char == " ":
+			display += "  "
+		elif char in remaining:
+			display += char + " "
+			remaining.erase(char)
+		else:
+			display += "_ "
+
+	label.text = display.strip_edges()
+
+func _on_player_letter_collected(letter: String) -> void:
+	collect_letter(letter)
 
 
-func collect_coin() -> void:
-	_coins_collected += 1
-	_coins_label.set_text(str(_coins_collected))
+func _on_player_1_letter_collected(letter: String) -> void:
+	collect_letter(letter)
+
+func _on_player_2_letter_collected(letter: String) -> void:
+	collect_letter(letter)
