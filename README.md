@@ -43,3 +43,8 @@ Check out this demo on the asset library: https://godotengine.org/asset-library/
 ## Music
 
 [*Pompy*](https://soundcloud.com/madbr/pompy) by Hubert Lamontagne (madbr)
+
+## License
+
+Those demos are distributed under the terms of the MIT license, as
+described in the [LICENSE.md](LICENSE.md) file.
