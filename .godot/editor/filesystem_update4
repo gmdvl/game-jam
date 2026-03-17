@@ -1,12 +1,5 @@
+res://game_splitscreen.gd
+res://gui/hearts.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
 res://gui/theme.tres
-res://gui/start_menu.tscn
-res://gui/start_menu.gd
-res://gui/pause_menu.gd
-res://gui/pause_menu.tscn
-res://gui/coins_counter.gd
-res://level/coin.gd
-res://gui/game_over.gd
-res://gui/game_over.tscn
-res://gui/pause_menu_singleplayer.tscn
