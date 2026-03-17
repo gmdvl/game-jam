@@ -1,10 +1,30 @@
-[gd_scene format=3 uid="uid://game_over_tscn_1"]
+[gd_scene format=3 uid="uid://t5ysjg2ivlml"]
 
-[ext_resource type="Script" path="res://gui/game_over.gd" id="1"]
 [ext_resource type="Theme" uid="uid://bc4kpaija14nv" path="res://gui/theme.tres" id="2"]
 
-[node name="GameOver" type="Control"]
+[sub_resource type="GDScript" id="GDScript_lp8xs"]
+script/source = "class_name GameOver
+extends Control
+
+func _ready() -> void:
+	hide()
+
+func show_game_over() -> void:
+	show()
+	get_tree().paused = true
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://game_singleplayer.tscn\")
+
+func _on_quit_pressed() -> void:
+	get_tree().paused = false
+	get_tree().quit()
+"
+
+[node name="GameOver" type="Control" unique_id=2111869741]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,9 +32,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2")
-script = ExtResource("1")
+script = SubResource("GDScript_lp8xs")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=226129136]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +44,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.75)
 
-[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1301302005]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,21 +53,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=845814009]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1219137108]
+visible = false
 layout_mode = 2
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1727862999]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1679187589]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"

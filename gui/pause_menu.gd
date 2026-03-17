@@ -16,9 +16,17 @@ var _mode: MenuMode = MenuMode.PAUSE
 @onready var resume_button := center_cont.get_node(^"VBoxContainer/ResumeButton") as Button
 @onready var splitscreen_button := center_cont.get_node_or_null(^"VBoxContainer/SplitscreenButton") as Button
 @onready var coins_counter := $ColorRect/CoinsCounter as CoinsCounter
+@onready var restart_button := center_cont.get_node(^"VBoxContainer/RestartButton") as Button
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	mouse_filter = Control.MOUSE_FILTER_STOP
 	hide()
+
+func _prepare_for_menu() -> void:
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func close() -> void:
 	var tween := create_tween()
@@ -38,9 +46,14 @@ func close() -> void:
 	tween.tween_callback(hide)
 
 func open() -> void:
+	_prepare_for_menu()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.warp_mouse(get_viewport().get_visible_rect().size / 2)
+
 	_mode = MenuMode.PAUSE
 	title_label.text = "GAME PAUSED"
 	resume_button.text = "RESUME"
+
 	if splitscreen_button:
 		splitscreen_button.show()
 
@@ -64,9 +77,14 @@ func open() -> void:
 		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 func open_death() -> void:
+	_prepare_for_menu()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.warp_mouse(get_viewport().get_visible_rect().size / 2)
+
 	_mode = MenuMode.DEATH
 	title_label.text = "HARD LUCK!"
 	resume_button.text = "RESTART"
+
 	if splitscreen_button:
 		splitscreen_button.hide()
 
@@ -89,11 +107,13 @@ func open_death() -> void:
 			fade_out_duration
 		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
+func _on_restart_button_pressed() -> void:
+	if visible:
+		get_tree().paused = false
+		get_tree().reload_current_scene()
+
 func _on_letter_collected(letter: String) -> void:
 	coins_counter.collect_letter(letter)
-
-func _on_coin_collected() -> void:
-	coins_counter.collect_coin()
 
 func _on_resume_button_pressed() -> void:
 	if _mode == MenuMode.DEATH:

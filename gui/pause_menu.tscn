@@ -49,6 +49,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Resume"
 
+[node name="RestartButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1550309108]
+layout_mode = 2
+text = "RESTART"
+
 [node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2134735849]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -56,10 +60,15 @@ text = "Quit"
 
 [node name="CoinsCounter" parent="ColorRect" unique_id=663611775 instance=ExtResource("4")]
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 105.0
 offset_bottom = 50.0
+grow_horizontal = 1
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

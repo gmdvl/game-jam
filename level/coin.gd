@@ -2,18 +2,21 @@ class_name Coin
 extends Area2D
 
 @export var letter: String = "G"
-@export var letter_texture: Texture2D
+#@export var letter_texture: Texture2D
 
-@onready var sprite := $Sprite2D as Sprite2D
 @onready var pickup_sound := $Pickup as AudioStreamPlayer2D
+#@onready var sprite := $Sprite2D as Sprite2D
 
-func _ready() -> void:
-	if letter_texture:
-		sprite.texture = letter_texture
+var _collected := false
 
 func _on_body_entered(body: Node2D) -> void:
+	if _collected:
+		return
+
 	if body is Player:
+		_collected = true
 		set_deferred("monitoring", false)
+		set_deferred("monitorable", false)
 
 		if pickup_sound:
 			pickup_sound.play()
