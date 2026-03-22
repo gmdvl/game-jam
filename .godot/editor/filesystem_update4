@@ -1,5 +1,5 @@
-res://game_splitscreen.gd
-res://gui/hearts.tscn
+res://game_singleplayer.tscn
 res://level/tileset.tres
 res://level/props/wind_sway.tres
 res://gui/theme.tres
+res://mobile_controls.gd
