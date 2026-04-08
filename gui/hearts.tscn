@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://hearts_tscn_1"]
+[gd_scene format=3 uid="uid://bfnljgspso25t"]
 
-[ext_resource type="Script" path="res://gui/hearts.gd" id="1"]
+[ext_resource type="Script" uid="uid://c4vbxlg73sce5" path="res://gui/hearts.gd" id="1"]
 
-[node name="Hearts" type="HBoxContainer"]
+[node name="Hearts" type="HBoxContainer" unique_id=1836312563]
 script = ExtResource("1")

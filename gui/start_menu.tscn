@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cht5uxotyav1a"]
+
+[ext_resource type="Script" uid="uid://bcxvaitjs13av" path="res://gui/start_menu.gd" id="1_82ymg"]
+[ext_resource type="FontFile" uid="uid://b38i6uom437i1" path="res://gui/kenney_mini_square.ttf" id="2_t8pa5"]
+
+[node name="StartMenu" type="Control" unique_id=2055661294]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_82ymg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1726787160]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 480.0
+color = Color(0.05882353, 0.05882353, 0.101960786, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1020719290]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 663.0
+offset_bottom = 433.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1030473639]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2063204898]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t8pa5")
+theme_override_font_sizes/font_size = 40
+text = "GIANT RUN 
+THE LOST LETTERS"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=730576147]
+layout_mode = 2
+theme_override_colors/icon_pressed_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
+theme_override_fonts/font = ExtResource("2_t8pa5")
+theme_override_font_sizes/font_size = 20
+text = "Start"
+icon_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=605119827]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t8pa5")
+text = "
+How to Play!!
+Arrow buttons to move and jump 
+(←) Left
+(→) Right
+(↑) Jump
+(Space bar) to shoot
+
+Collect all letters to complete GIANT JAM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -3,12 +3,33 @@
 [ext_resource type="PackedScene" uid="uid://mqs27wy1rtxk" path="res://gui/pause_menu.tscn" id="1_pwe1t"]
 
 [node name="PauseMenu" unique_id=2063484984 instance=ExtResource("1_pwe1t")]
+process_mode = 2
 
-[node name="SplitscreenButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" parent_id_path=PackedInt32Array(103114303) index="3" unique_id=2023795533]
+[node name="ColorRect" parent="." index="0" unique_id=1798084660]
+process_mode = 2
+
+[node name="CenterContainer" parent="ColorRect" index="0" unique_id=1384053806]
+process_mode = 1
+
+[node name="VBoxContainer" parent="ColorRect/CenterContainer" index="0" unique_id=103114303]
+process_mode = 2
+
+[node name="ResumeButton" parent="ColorRect/CenterContainer/VBoxContainer" index="2" unique_id=1637699098]
+process_mode = 2
+
+[node name="SplitscreenButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" index="3" unique_id=2023795533]
+process_mode = 2
 layout_mode = 2
 text = "Change to 2-Player"
 
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/SplitscreenButton" to="." method="_on_splitscreen_button_pressed"]
-[node name="CoinsCounter" parent="ColorRect" parent_id_path=PackedInt32Array(1798084660) index="1" unique_id=663611775]
+[node name="RestartButton" parent="ColorRect/CenterContainer/VBoxContainer" index="4" unique_id=1550309108]
+process_mode = 2
+
+[node name="QuitButton" parent="ColorRect/CenterContainer/VBoxContainer" index="5" unique_id=2134735849]
+process_mode = 2
+
+[node name="CoinsCounter" parent="ColorRect" index="1" unique_id=663611775]
 offset_right = 23.0
 offset_bottom = 0.0
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/SplitscreenButton" to="." method="_on_splitscreen_button_pressed"]

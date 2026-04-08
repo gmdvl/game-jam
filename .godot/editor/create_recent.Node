@@ -1,3 +1,9 @@
+Button
+Label
+VBoxContainer
+CenterContainer
+ColorRect
+Control
 Timer
 AudioStreamPlayer2D
 Marker2D

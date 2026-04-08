@@ -13,6 +13,8 @@ func _ready() -> void:
 func collect_letter(letter: String) -> void:
 	collected_letters.append(letter)
 	update_display()
+	
+
 
 func update_display() -> void:
 	var remaining := collected_letters.duplicate()
