@@ -4,9 +4,38 @@
 [ext_resource type="PackedScene" uid="uid://cygtqanamu68e" path="res://level/level.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dsqy8lxrpip13" path="res://player/player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://nhpj5cy87771" path="res://gui/pause_menu_singleplayer.tscn" id="4_x6l06"]
-[ext_resource type="PackedScene" uid="uid://hearts_tscn_1" path="res://gui/hearts.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://game_over_tscn_1" path="res://gui/game_over.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bfnljgspso25t" path="res://gui/hearts.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbxfkqpq2rynb" path="res://gui/coins_counter.tscn" id="5_2olji"]
+[ext_resource type="PackedScene" uid="uid://t5ysjg2ivlml" path="res://gui/game_over.tscn" id="6"]
+[ext_resource type="Script" uid="uid://dmnbw8sld6r7j" path="res://mobile_controls.gd" id="8_c0k48"]
+[ext_resource type="Texture2D" uid="uid://cvui4jpxp528b" path="res://gui/touch_button_left.webp" id="9_hspmi"]
+[ext_resource type="Texture2D" uid="uid://nlqwdfkqcn0r" path="res://gui/touch_button_right.webp" id="10_pj3lu"]
+[ext_resource type="Texture2D" uid="uid://ban4wyt8e8jlf" path="res://gui/touch_button_jump.webp" id="11_ma7jk"]
+[ext_resource type="Texture2D" uid="uid://mfp7yartjo1" path="res://gui/touchbuttons/Shoot.png" id="12_5h3x8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pj3lu"]
+radius = 49.77
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c0k48"]
+load_path = "res://.godot/imported/touch_button_right.webp-ec9f97ce35fcf0bf570ff19f4fcaecc8.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ma7jk"]
+radius = 49.77
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hspmi"]
+load_path = "res://.godot/imported/touch_button_jump.webp-72d09f543801d684298fbadf893197c2.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0y84f"]
+radius = 49.77
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5h3x8"]
+radius = 49.77
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2xgy"]
+load_path = "res://.godot/imported/Shoot.png-50c4d9c1e30934385ab7fbeb49dafb7d.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5u38p"]
+radius = 90.0
 
 [node name="Game" type="Node" unique_id=924924404]
 process_mode = 3
@@ -28,15 +57,62 @@ layer = 100
 offset_left = 10.0
 offset_top = 10.0
 
-
 [node name="GameOver" parent="InterfaceLayer" unique_id=1388998721 instance=ExtResource("6")]
+
 [node name="CoinsCounter" parent="InterfaceLayer" unique_id=1407430856 instance=ExtResource("5_2olji")]
 offset_left = 25.0
 offset_top = 45.0
 offset_right = 25.0
-offset_bottom = 45.0
 
-[connection signal="letter_collected" from="Level/Player" to="InterfaceLayer/CoinsCounter" method="_on_player_letter_collected"]
-; [connection signal="coin_collected" from="Level/Player" to="InterfaceLayer/PauseMenu" method="_on_coin_collected"]
-[connection signal="health_changed" from="Level/Player" to="InterfaceLayer/HeartsLeft" method="set_health"]
+[node name="MobileControls" type="CanvasLayer" parent="InterfaceLayer" unique_id=421938724]
+layer = 100
+script = ExtResource("8_c0k48")
+
+[node name="LeftButton" type="TouchScreenButton" parent="InterfaceLayer/MobileControls" unique_id=1098439111]
+position = Vector2(614, 414)
+scale = Vector2(0.50781244, 0.4921875)
+texture_normal = ExtResource("9_hspmi")
+texture_pressed = ExtResource("9_hspmi")
+shape = SubResource("CircleShape2D_pj3lu")
+action = "move_left"
+visibility_mode = 1
+
+[node name="RightButton" type="TouchScreenButton" parent="InterfaceLayer/MobileControls" unique_id=1474950786]
+position = Vector2(726, 414)
+scale = Vector2(0.50781244, 0.48437586)
+texture_normal = SubResource("CompressedTexture2D_c0k48")
+texture_pressed = ExtResource("10_pj3lu")
+shape = SubResource("CircleShape2D_ma7jk")
+action = "move_right"
+visibility_mode = 1
+
+[node name="JumpButton2" type="TouchScreenButton" parent="InterfaceLayer/MobileControls" unique_id=2123129013]
+position = Vector2(11.000004, 418)
+scale = Vector2(0.5, 0.4765625)
+texture_normal = SubResource("CompressedTexture2D_hspmi")
+texture_pressed = ExtResource("11_ma7jk")
+shape = SubResource("CircleShape2D_0y84f")
+action = "jump"
+visibility_mode = 1
+
+[node name="JumpButton" type="TouchScreenButton" parent="InterfaceLayer/MobileControls" unique_id=1114991804]
+position = Vector2(671, 353)
+scale = Vector2(0.50000006, 0.47656253)
+texture_normal = SubResource("CompressedTexture2D_hspmi")
+texture_pressed = ExtResource("11_ma7jk")
+shape = SubResource("CircleShape2D_5h3x8")
+action = "jump"
+visibility_mode = 1
+
+[node name="ShootButton" type="TouchScreenButton" parent="InterfaceLayer/MobileControls" unique_id=576721844]
+position = Vector2(-44, 337)
+scale = Vector2(0.25701627, 0.25745252)
+texture_normal = SubResource("CompressedTexture2D_u2xgy")
+texture_pressed = ExtResource("12_5h3x8")
+shape = SubResource("CircleShape2D_5u38p")
+action = "shoot"
+visibility_mode = 1
+
 [connection signal="died" from="Level/Player" to="InterfaceLayer/GameOver" method="show_game_over"]
+[connection signal="health_changed" from="Level/Player" to="InterfaceLayer/HeartsLeft" method="set_health"]
+[connection signal="letter_collected" from="Level/Player" to="InterfaceLayer/CoinsCounter" method="_on_player_letter_collected"]
