@@ -38,7 +38,7 @@ Check out this demo on the asset library: https://godotengine.org/asset-library/
 
 ## Screenshots
 
-![2D Platformer](screenshots/platformer.webp)
+![2D Platformer](screenshots/Giant_Run.png)
 
 ## Music
 
